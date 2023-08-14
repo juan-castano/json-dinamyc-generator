@@ -1,23 +1,15 @@
-﻿namespace ObjectStorageApp {
-  using Minio;
-  using Minio.DataModel;
-  using Newtonsoft.Json;
-    using ObjectStorageApp.Models;
+﻿namespace ObjectStorageApp
+{
+    using Newtonsoft.Json;
+    using Utilities.Builders;
+    using Utilities.Searcher;
 
-    public class Program {
-
-    public static async Task Main(string[] args)
+    public class Program
     {
-        var author = new Author
+
+        public static Task Main(string[] args)
         {
-            Name = "Juan"
-        };
-        Console.WriteLine(author.Name);
-
-        var author1 = new Author();
-        Console.WriteLine(author1.Name);
-
-        var dictionary = RequestBuilder
+            var dictionary = RequestBuilder
             .Init()
             .AddProperty("property1", false)
             .AddProperty("property2", 1543.4)
@@ -44,91 +36,27 @@
             )
             .Build();
 
-        var list = RequestListBuilder
-            .Init()
-            .Add(312)
-            .Add(articles => 
-                articles
-                    .AddProperty("item", "book1")
-                    .Build()
-            )
-            .Build();
+            var list = RequestListBuilder
+                .Init()
+                .Add(312)
+                .Add(articles =>
+                    articles
+                        .AddProperty("item", "book1")
+                        .Build()
+                )
+                .Build();
 
-        var serialized = JsonConvert.SerializeObject(dictionary);
-        var serializedList = JsonConvert.SerializeObject(list);
+            var serialized = JsonConvert.SerializeObject(dictionary);
+            var serializedList = JsonConvert.SerializeObject(list);
 
-        Console.WriteLine(serialized);
-        Console.WriteLine(serializedList);
+            Console.WriteLine(serialized);
+            Console.WriteLine(serializedList);
 
-        var searcher = Search.Load(dictionary);
-        searcher.Find("data.nestedAttributes");
-    }
-        // public static async Task Main(string[] args)
-        // {
-        //     Console.WriteLine("ObjectStorageApp-minio");
-
-        //     var minioClient = new Minio.MinioClient()
-        //                     .WithEndpoint("s3.bhs.io.cloud.ovh.net")
-        //                     .WithCredentials("727745e688124f91be2f0ccbddae7de5", "bbbeb8bf36094beba600d8702a495920")
-        //                     .WithRegion("bhs")
-        //                     .WithSSL()
-        //                     .Build();
-
-        //     if (GetBucketName(args, out string bucketName))
-        //     {
-        //         try
-        //         {
-        //             Console.WriteLine($"\nCreating bucket {bucketName}...");
-        //             var bucketArgs = new MakeBucketArgs().WithBucket(bucketName);
-        //             await minioClient.MakeBucketAsync(bucketArgs);
-        //             Console.WriteLine($"\nBucket created: {bucketName}");
-        //         } catch (Exception ex)
-        //         {
-        //             Console.WriteLine("Caught exception when creating a bucket:");
-        //             Console.WriteLine(ex.Message);
-        //         }
-        //     }
-
-        //     Console.WriteLine("\nGetting a list of your buckets...");
-        //     var listResponse = await MyListBucketsAsync(minioClient);
-        //     Console.WriteLine($"Number of buckets: {listResponse.Buckets.Count}");
-        //     foreach(Bucket b in listResponse.Buckets)
-        //     {
-        //         Console.WriteLine($"Name: {b.Name} - UTC: {b.CreationDateDateTime} - CreatedAt: {b.CreationDate}");
-        //     }
-        // }
-
-        private static bool GetBucketName(string[] args, out string bucketName)
-        {
-            bool retval = false;
-            bucketName = string.Empty;
-
-            if (args.Length == 0)
-            {
-                Console.WriteLine(@"\nNo arguments specified. Will simply list your Amazon S3 buckets.\nIf you wish to create a bucket, supply a valid, globally unique bucket name.");
-                bucketName = String.Empty;
-                retval = false;
-            }
-            else if (args.Length == 1)
-            {
-                bucketName = args[0];
-                retval = true;
-            }
-            else
-            {
-                Console.WriteLine("\nToo many arguments specified." +
-                "\n\ndotnet_tutorials - A utility to list your Amazon S3 buckets and optionally create a new one." +
-                "\n\nUsage: S3CreateAndList [bucket_name]" +
-                "\n - bucket_name: A valid, globally unique bucket name." +
-                "\n - If bucket_name isn't supplied, this utility simply lists your buckets.");
-                Environment.Exit(1);
-            }
-            return retval;
+            var searcher = DataSearcher.Load(dictionary);
+            searcher.Find("data.nestedAttributes");
+            return Task.CompletedTask;
         }
 
-        private static async Task<ListAllMyBucketsResult> MyListBucketsAsync(MinioClient s3Client)
-        {
-            return await s3Client.ListBucketsAsync();
-        }
+        
     }
 }

@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjectStorageApp", "ObjectStorageApp.csproj", "{D397EFE9-B81D-4819-891D-755E405FB8B8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Storage", "Storage\Storage.csproj", "{222A2379-B1FF-4898-9E81-6B7921C7D887}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities", "Utilities\Utilities.csproj", "{43ACD3DA-9538-4B31-9948-5D15E22C98C2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D397EFE9-B81D-4819-891D-755E405FB8B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D397EFE9-B81D-4819-891D-755E405FB8B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D397EFE9-B81D-4819-891D-755E405FB8B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D397EFE9-B81D-4819-891D-755E405FB8B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{222A2379-B1FF-4898-9E81-6B7921C7D887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{222A2379-B1FF-4898-9E81-6B7921C7D887}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{222A2379-B1FF-4898-9E81-6B7921C7D887}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{222A2379-B1FF-4898-9E81-6B7921C7D887}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43ACD3DA-9538-4B31-9948-5D15E22C98C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43ACD3DA-9538-4B31-9948-5D15E22C98C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43ACD3DA-9538-4B31-9948-5D15E22C98C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43ACD3DA-9538-4B31-9948-5D15E22C98C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C8F2A68D-6C33-49AD-8B82-3BE95F3A62B7}
+	EndGlobalSection
+EndGlobal
